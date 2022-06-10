@@ -1,0 +1,15 @@
+﻿@{
+    
+}
+
+<div class="text-center">
+    <h1 style= "color:@ViewBag.Color">@ViewBag.Msg</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<script>
+    Swal.fire({
+        icon: '@ViewBag.Icon',
+        title: '@ViewBag.Title',
+        text: '@ViewBag.Msg'
+    })
+</script>
