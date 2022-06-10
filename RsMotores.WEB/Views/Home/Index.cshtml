@@ -1,10 +1,11 @@
-﻿@{
-    
-}
+﻿@model RsMotores.WEB.Models.Usuario
+
+
 
 <div class="text-center">
     <h1 style= "color:@ViewBag.Color">@ViewBag.Msg</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Bem vindo @Model.nome</p>
+    <a asp-controller="Login" asp-action="Token">Voltar ao início</a>
 </div>
 <script>
     Swal.fire({

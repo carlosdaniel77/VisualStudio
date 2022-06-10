@@ -27,30 +27,47 @@ namespace RsMotores.WEB.Controllers
         [HttpPost]
         public IActionResult Index(string email, string password)
         {
-            ViewBag.Title = "Mensagem de Login";
-            if (string.IsNullOrEmpty(email)&&string.IsNullOrEmpty(password))
+            ErrorMessage erroDados;
+            var userDados = new Usuario()
             {
+                cpf = "1232312312",
+                email = "admin@admin",
+                nome = "Admin",
+                password = "123456"
+            };
+
+            ViewBag.Title = "Mensagem de Login";
+            if (string.IsNullOrEmpty(email)&&
+                string.IsNullOrEmpty(password))
+            {
+                erroDados = new ErrorMessage(3);
                 ViewBag.Icon = "error";
-                ViewBag.Msg= "Campos: Emails e senhas não pode ser vazios";
+                ViewBag.Msg= erroDados.msg;
                 ViewBag.Color = "Red";
+                return View("Error", erroDados);
             }
             else
             {
-                if (email.Equals("admin@admin") && password.Equals("123456"))
+                if (email.Equals(userDados.email) && 
+                    password.Equals(userDados.password))
                 {
                     ViewBag.Icon = "sucess";
                     ViewBag.Msg = "Logado com sucesso";
                     ViewBag.Color = "Green";
+                    return View(userDados);
                 }
                 else
                 {
+                    erroDados = new ErrorMessage(1);
                     ViewBag.Icon = "error";
-                    ViewBag.Msg = "Email ou senha inválidos";
+                    ViewBag.Msg = erroDados.msg;
                     ViewBag.Color = "Red";
+                    return View("Error", erroDados);
                 }
+
             }
-            return View();
         }
+
         public IActionResult Privacy()
         {
             return View();
